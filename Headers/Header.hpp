@@ -4,7 +4,7 @@ class Credit
 {
 private:
     std::string name;
-    unsigned int value;
+    double value;
     std::string valute;
     float prosent;
 public:
@@ -14,7 +14,7 @@ public:
     Credit& operator=(Credit&) = default;
     Credit& operator=(Credit&&) = default;
 
-    Credit(std::string name = "", unsigned int value = 0, std::string valute = "RUB", float prosent = 0) : name{name}, value{value}, valute{valute}, prosent{prosent} {}
+    Credit(std::string name = "", double value = 0, std::string valute = "RUB", float prosent = 0) : name{name}, value{value}, valute{valute}, prosent{prosent} {}
     
     friend std::ostream& operator<<(std::ostream&, const Credit&);
 
@@ -52,8 +52,8 @@ Credit generate_random_credit(std::string name,std::string valute) {
     std::uniform_real_distribution<float> prosent_dist(1.0, 100.0);
     float prosent = prosent_dist(gen);
 
-    std::uniform_int_distribution<unsigned int> value_dist(1000, 100000000);
-    unsigned int value = value_dist(gen);
+    std::uniform_real_distribution<double> value_dist(1000.0, 100000.0);
+    double  value = value_dist(gen);
 
     return Credit(name, value, valute, prosent);
 }
